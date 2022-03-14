@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="/images/icons/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="/images/icons/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="基础指令       pwd - 输出工作目录cd  - 切换工作目录                       重要的文件名称：       ~   - 家（home）目录~ab - 用户“ab”的家目录.   - 当前目录..  - 父目录（当前目录上一级目录）&#x2F;   - 根目录（最上一级目录，无父目录）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux Shell 简介">
+<meta property="og:url" content="https://superlangou.github.io/2022/03/14/Linux-Shell-%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="Xiao Zhao&#39;s world">
+<meta property="og:description" content="基础指令       pwd - 输出工作目录cd  - 切换工作目录                       重要的文件名称：       ~   - 家（home）目录~ab - 用户“ab”的家目录.   - 当前目录..  - 父目录（当前目录上一级目录）&#x2F;   - 根目录（最上一级目录，无父目录）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-14T09:57:45.000Z">
+<meta property="article:modified_time" content="2022-03-14T11:09:03.016Z">
+<meta property="article:author" content="XiaoZhao">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary"><title>Linux Shell 简介 | Xiao Zhao's world</title><link ref="canonical" href="https://superlangou.github.io/2022/03/14/Linux-Shell-%E7%AE%80%E4%BB%8B/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script src="/live2d-widget-master/autoload.js"></script><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 6.0.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">Xiao Zhao's world</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Linux Shell 简介</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2022-03-14</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2022-03-14</span></span></div></header><div class="post-body">
+        <h2 id="基础指令">
+          <a href="#基础指令" class="heading-link"><i class="fas fa-link"></i></a><a href="#基础指令" class="headerlink" title="基础指令"></a>基础指令</h2>
+      <p>pwd - 输出工作目录<br>cd  - 切换工作目录  </p>
+
+        <h3 id="重要的文件名称：">
+          <a href="#重要的文件名称：" class="heading-link"><i class="fas fa-link"></i></a><a href="#重要的文件名称：" class="headerlink" title="重要的文件名称："></a>重要的文件名称：</h3>
+      <p>~   - 家（home）目录<br>~ab - 用户“ab”的家目录<br>.   - 当前目录<br>..  - 父目录（当前目录上一级目录）<br>&#x2F;   - 根目录（最上一级目录，无父目录）  </p>
+
+        <h2 id="手册页（man-pages）">
+          <a href="#手册页（man-pages）" class="heading-link"><i class="fas fa-link"></i></a><a href="#手册页（man-pages）" class="headerlink" title="手册页（man pages）"></a>手册页（man pages）</h2>
+      <p> man 查询的命令<br>大部分命令可以加 –help 或者 -h 来查询相关命令的使用帮助<br>如果想查询更多man命令的信息可以输入： man man  </p>
+
+        <h2 id="管理文件-删除-移动-创造和删除">
+          <a href="#管理文件-删除-移动-创造和删除" class="heading-link"><i class="fas fa-link"></i></a><a href="#管理文件-删除-移动-创造和删除" class="headerlink" title="管理文件 删除 移动 创造和删除"></a>管理文件 删除 移动 创造和删除</h2>
+      <p>cp 文件路径 目的路径 - 复制文件<br>mv 文件路径 目的路径 - 移动和重命名文件<br>rm 文件名称 - <font color="red">永久删除</font>文件<br>rmdir 目录 - 创建目录<br>touch 文件 - 创建一个空白文件<br>列出当前目录的文件:<br>ls 路径 - 列出文件<br>tree 路径 - 递归列出文件  </p>
+
+        <h2 id="隐藏和临时文件">
+          <a href="#隐藏和临时文件" class="heading-link"><i class="fas fa-link"></i></a><a href="#隐藏和临时文件" class="headerlink" title="隐藏和临时文件"></a>隐藏和临时文件</h2>
+      <p>隐藏文件以 . 开头，只有使用 -all 时才会出现  </p>
+
+        <h2 id="Tar">
+          <a href="#Tar" class="heading-link"><i class="fas fa-link"></i></a><a href="#Tar" class="headerlink" title="Tar"></a>Tar</h2>
+      <p>Linux中的压缩文件<br>标志：<br>-c 创建一个压缩包<br>-x 打开压缩包<br>-z 使用gipz压缩<br>-v 详细模式（显示进度）<br>-f 指定文件名  </p>
+
+        <h2 id="文本处理">
+          <a href="#文本处理" class="heading-link"><i class="fas fa-link"></i></a><a href="#文本处理" class="headerlink" title="文本处理"></a>文本处理</h2>
+      <p>sort 对文本文件的行进行排序<br>-d 按照字排序 -f 忽略大小写 -n 数字排序 -r 颠倒<br>cat 连接输入并在屏幕上输出<br>uniq 报告或省略重复的行<br>head&#x2F;tail 输出第一&#x2F;最后一行<br>-dx 输出第一&#x2F;最后一个x字符 -nx：输出第一&#x2F;最后x行  </p>
+
+        <h2 id="文件定向-？">
+          <a href="#文件定向-？" class="heading-link"><i class="fas fa-link"></i></a><a href="#文件定向-？" class="headerlink" title="文件定向 ？"></a>文件定向 ？</h2>
+      
+        <h2 id="Grep（Global-Regular-Expression-Print，全局正则表达式版本）">
+          <a href="#Grep（Global-Regular-Expression-Print，全局正则表达式版本）" class="heading-link"><i class="fas fa-link"></i></a><a href="#Grep（Global-Regular-Expression-Print，全局正则表达式版本）" class="headerlink" title="Grep（Global Regular Expression Print，全局正则表达式版本）"></a>Grep（Global Regular Expression Print，全局正则表达式版本）</h2>
+      <p>grep 为在文件中的搜索模式 [如果未提供文件，则以递归方式搜索所有文件]  </p>
+
+        <h3 id="标志">
+          <a href="#标志" class="heading-link"><i class="fas fa-link"></i></a><a href="#标志" class="headerlink" title="标志"></a>标志</h3>
+      <p>-c  ？<br>-n 显示匹配项和行号<br>-h 显示没有文件名的匹配项<br>-e exp ？<br>-i 忽略大小写<br>-f file ？<br>-o 仅输出符合匹配项的行<br>-l 之显示文件名列表<br>-r 以递归的方式读取每个目录下所有文件 </p>
+
+        <h2 id="Pipes（管道）">
+          <a href="#Pipes（管道）" class="heading-link"><i class="fas fa-link"></i></a><a href="#Pipes（管道）" class="headerlink" title="Pipes（管道）"></a>Pipes（管道）</h2>
+      <p>Pipes是一种将一个命令的输出与输入链接到另一个命令的方法<br>grep compute 路径 - 在目标路径中寻找compute  </p>
+</div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://superlangou.github.io">XiaoZhao</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://superlangou.github.io/2022/03/14/Linux-Shell-%E7%AE%80%E4%BB%8B/">https://superlangou.github.io/2022/03/14/Linux-Shell-%E7%AE%80%E4%BB%8B/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://superlangou.github.io/tags/Linux/">Linux</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2022/03/06/diyi/"><span class="paginator-prev__text">我的第一篇博客</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">
+          基础指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E8%A6%81%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">
+          重要的文件名称：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%8C%E9%A1%B5%EF%BC%88man-pages%EF%BC%89"><span class="toc-number">2.</span> <span class="toc-text">
+          手册页（man pages）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E6%96%87%E4%BB%B6-%E5%88%A0%E9%99%A4-%E7%A7%BB%E5%8A%A8-%E5%88%9B%E9%80%A0%E5%92%8C%E5%88%A0%E9%99%A4"><span class="toc-number">3.</span> <span class="toc-text">
+          管理文件 删除 移动 创造和删除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9A%90%E8%97%8F%E5%92%8C%E4%B8%B4%E6%97%B6%E6%96%87%E4%BB%B6"><span class="toc-number">4.</span> <span class="toc-text">
+          隐藏和临时文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Tar"><span class="toc-number">5.</span> <span class="toc-text">
+          Tar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86"><span class="toc-number">6.</span> <span class="toc-text">
+          文本处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%AE%9A%E5%90%91-%EF%BC%9F"><span class="toc-number">7.</span> <span class="toc-text">
+          文件定向 ？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grep%EF%BC%88Global-Regular-Expression-Print%EF%BC%8C%E5%85%A8%E5%B1%80%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%89%88%E6%9C%AC%EF%BC%89"><span class="toc-number">8.</span> <span class="toc-text">
+          Grep（Global Regular Expression Print，全局正则表达式版本）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A0%87%E5%BF%97"><span class="toc-number">8.1.</span> <span class="toc-text">
+          标志</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pipes%EF%BC%88%E7%AE%A1%E9%81%93%EF%BC%89"><span class="toc-number">9.</span> <span class="toc-text">
+          Pipes（管道）</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="/assets/bh.jpg" alt="avatar"></div><p class="sidebar-ov-author__text">Yeah life's not out to get you</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">2</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">2</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">1</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2022</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>XiaoZhao</span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script></body></html>
